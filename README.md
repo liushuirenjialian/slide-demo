@@ -1,3 +1,3 @@
 # slide-demo
-分为左右移动，上下移动地例子。jquery css 实现。
+分为左右轮播，上下收尾相接的轮播例子。jquery(js) css html实现。
 在线下载地址：https://liushuirenjialian.github.io/slide-demo/
