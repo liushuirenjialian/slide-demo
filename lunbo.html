@@ -1,0 +1,400 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lunbo</title>
+	 <script src="http://code.jquery.com/jquery-latest.js"></script>
+	<style type="text/css">
+		#abngeBlock{
+			padding: 5px;
+			width:450px;
+			height: 286px;
+			border: 1px solid #ccc;
+		}
+		#player{
+			position: relative;
+			overflow: hidden;
+			height: 100%;
+		}
+		#player ul.list{
+         padding: 0;margin:0;
+         list-style: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+		}
+		#player ul.list li{
+			float: left;width: 100%;height: 100%;
+		}
+		#player .list img{
+			width: 100%;height: 100%;
+			border: 0;
+		}
+#abgneBlock ul.playerControl {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	height: 20px;
+}
+#abgneBlock ul.playerControl li {
+	float: left;
+	color: #ff99cc;
+	text-align: center;
+	line-height: 20px;
+	width: 20px;
+	height: 20px;
+	font-family: Arial;
+	font-size: 12px;
+	cursor: pointer;
+	margin: 0px 2px;
+	background: url(images/control_ico.gif) no-repeat -21px 0;
+}
+#abgneBlock ul.playerControl li.current { 
+	color: #fff;
+	font-weight: bold;
+	background-position: 0 0;
+}
+	</style>
+</head>
+<body>
+	<div id="abngeBlock">
+		<div id="player">
+			<ul  class="list">
+				<li><a href="_blank" href="#"><img src="slide/slide0.jpg" alt=""></a></li>
+				<li><a href="_blank" href="#"><img src="slide/slide2.jpg" alt=""></a></li>
+				<li><a href="_blank" href="#"><img src="slide/slide1.jpg" alt=""></a></li>
+				<li><a href="_blank" href="#"><img src="slide/slide0.jpg" alt=""></a></li>
+				<li><a href="_blank" href="#"><img src="slide/slide0.jpg" alt=""></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function() {
+		var $block=$('#abngeBlock'),
+		            $slides=$('#player ul.list',$block),
+		            _height=$slides.find('li').height(),
+		            $li=$('li',$slides),
+		            _animateSpeed=400;
+		var _str='';
+		for(var i=0;j=$li.length;i<j;i++){
+			//每一个li都有自己的classname=playercontrol——号码
+			_str+='<li class="playercontrol_"+(i+1)+'">"+(i+1)+'</li>';
+		}
+		//产生ul加li选项加入其中 li加mouseover事件
+		$('<ul class="playerControl"></ul>').html(_str).appendTo($slides.parent()).find('li').mouseover(function(){
+		var $this = $(this);
+		$this.addClass('current').siblings('.current').removeClass('current');
+		// 移動位置到相對應的號碼
+		$slides.stop().animate({
+			top: _height * $this.index() * -1
+		}, _animateSpeed);
+ 
+		return false;
+	}).eq(0).mouseover();
+
+	})
+</script>
+</html> -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="zh-tw">
+<head>
+<meta name="Generator" content="EditPlus" />
+<meta name="Author" content="heyanfang" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<title>上下垂直轮播</title>
+<!-- 上下垂直的css -->
+<style type="text/css">
+	#abgneBlock {
+		padding: 5px;
+		width: 450px;
+		height: 286px;
+		border: 1px solid #ccc;
+	}
+	#abgneBlock #player {
+		position: relative;
+		overflow: hidden;
+		height: 100%;
+	}
+	#abgneBlock ul.list {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+	#abgneBlock ul.list li {
+		float: left;
+		width: 100%;
+		height: 100%;
+	}
+	#abgneBlock .list img{
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+	#abgneBlock ul.playerControl {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		position: absolute;
+		bottom: 5px;
+		right: 5px;
+		height: 20px;
+	}
+	#abgneBlock ul.playerControl li {
+		float: left;
+		color: #ff99cc;
+		text-align: center;
+		line-height: 20px;
+		width: 20px;
+		height: 20px;
+		font-family: Arial;
+		font-size: 12px;
+		cursor: pointer;
+		margin: 0px 2px;
+		background: url(images/control_ico.gif) no-repeat -21px 0;
+	}
+	#abgneBlock ul.playerControl li.current { 
+		color: #fff;
+		font-weight: bold;
+		background-position: 0 0;
+	}
+	/*左右移动css*/
+
+    .coor{
+        margin-top: 20px;
+        background-color: #111417;
+         position: absolute;
+        height: 73px;
+        width: 1111px;
+        overflow: hidden;
+        text-align: center;
+        left: 50%;
+        margin-left: -555px;
+    }
+.coor ul{
+       background-color: #111417;
+       position: absolute;
+       height: 76px;
+
+}
+.coor ul li{
+   text-align: center;
+   width: 198px;
+   height: 76px;
+   float: left;
+
+}
+.coor ul li a img{
+   width: 156px;
+   height: 70px;
+   display: inline-block;
+}
+.coor ul li a {
+   width: 156px;
+   height: 70px;
+   display: inline-block;
+}
+
+</style>
+<!-- 左右移动可行性方案 -->
+<script type="text/javascript">
+	$(function(){
+		// 先取得必要的元素並用 jQuery 包裝
+		// 再來取得 $slides 的高度及設定動畫時間
+		var $block = $('#abgneBlock'),
+			$slides = $('#player ul.list', $block),
+			_height = $slides.find('li').height(),
+			$li = $('li', $slides),
+			_animateSpeed = 400, 
+			timer, _speed = 4000;
+		
+		// 先移到最後一張
+		$slides.css({
+			top: _height * ($li.length - 1) * -1
+		});
+		
+		// 產生 li 選項
+		var _str = '';
+		for(var i=0, j=$li.length;i<j;i++){
+			// 每一個 li 都有自己的 className = playerControl_號碼
+			_str += '<li class="playerControl_' + (i+1) + '">' + (i+1) + '</li>';
+		}
+
+		// 產生 ul 並把 li 選項加到其中
+		// 並幫 li 加上 mouseover 事件
+		var $controlLi = $('<ul class="playerControl"></ul>').html(_str).appendTo($slides.parent()).find('li');
+		$controlLi.mouseover(function(){
+			clearTimeout(timer);
+
+			var $this = $(this);
+			$this.addClass('current').siblings('.current').removeClass('current');
+			// 移動位置到相對應的號碼
+			$slides.stop().animate({
+				top: _height * ($li.length - $this.index() - 1) * -1
+			}, _animateSpeed, function(){
+				if(!_isOver) timer = setTimeout(moveNext, _speed);
+			});
+
+			return false;
+		}).eq(0).mouseover();
+		
+		// 當滑鼠移到 $block 時則停止輪播
+		// 移出時則繼續輪播
+		var _isOver = false;
+		$block.mouseenter(function(){
+			clearTimeout(timer);
+			_isOver = true;
+		}).mouseleave(function(){
+			_isOver = false;
+			timer = setTimeout(moveNext, _speed);
+		});
+
+		// 用來控制移動的函式
+		function moveNext(){
+			var _now = $controlLi.filter('.current').index();
+			$controlLi.eq((_now+1) % $controlLi.length).mouseover();
+		}
+	});
+</script>
+<!--  -->
+<script type="text/javascript">
+	function asyncFetch(url) {
+    var deferred = $.Deferred();
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "json",
+        success: function(data) {
+            deferred.notify("fetching");
+            if (data) {
+                console.log(data.total);
+                deferred.resolve(data);
+ // deferred.resolve() 手动改变deferred对象的运行状态为"已完成"，从而立即触发done()方法。
+// deferred.reject() 这个方法与deferred.resolve()正好相反，调用后将deferred对象的运行状态变为"已失败"，从而立即触发fail()方法。
+            } else {                  
+                deferred.reject("nothing got");
+            }
+        },
+        error: function(xhr, errorType, error) {
+            console.log("nihao")
+        }
+    });
+    return deferred;
+}
+function setStyle(img_width, count){
+    $('div.coor').children('ul').css('width', (img_width * count) + 'px')
+}
+// jquery的deferred对象，当done被触发，执行 读取json 放到don结构上，添加到html上，定时器设置时间（code,time),animate设置图片的随着时间进行
+$(function() {
+    //height: 158px;
+    //width: 1133px;
+    var img_width = 198;
+    var img_height = 156;
+    var url = 'http://api.hulai.com/h/api/index/getFriendlyList?rows=500';
+
+    var promise = asyncFetch(url);
+    promise.then(function(data) {
+        if (data) {
+            // console.log("zhixin")
+            // 插入友链图片
+            var imgs = data.rows;
+            // console.log(imgs)
+            var coor_str = '';
+            var li_str = '';
+            var i = 0;
+            var href = '';
+            var img_src = '';
+            var len = imgs.length;
+            //必须执行一次 
+            while (i < len) {
+                li_str = '<li>';
+                href = imgs[i].tourl;
+                img_src = imgs[i++].imgurl;
+                li_str += '<a target="_blank" href="' + href + '"><img src="' + img_src + '"></a>';
+                if (i < len)
+                 {
+                    href = imgs[i].tourl;
+                    img_src = imgs[i].imgurl;
+                    li_str += '<a target="_blank" href="' + href + '"><img src="' + img_src + '"></a>';
+                } 
+                else 
+                {
+                    li_str += '</li>'
+                }
+                i++;
+                coor_str += li_str;
+            }
+
+            $('div.coor').children('ul').html(coor_str);
+            //coor,ul,li，img的css设置（宽度，高度，边距）
+            var count = Math.ceil(data.total /1);
+            // 提取了设定ul宽度的方法
+            setStyle(img_width, count)
+            // console.log($('.coor ul li').length);
+            // li长度
+            var li_len = $('.coor ul li').length;
+            // 获取li宽度
+            var li_width = parseInt($('.coor ul li').css('width'));
+            // console.log("li_width:" + li_width);
+            var curr = 0;
+            var coor_timer = null;
+
+            function tab1(curr) {
+                if (curr > 0) {
+                    // animate 动画 自定义动画。执行
+                    $('.coor ul').animate({
+                        left: -curr * li_width
+                    }, 500);
+                } else {
+                    $('.coor ul').css('left', 0);
+                }
+            }
+            // 定时器每隔一定时间就调用函数，方法或对象。可以使用本动作更新来自数据库的变量或更新时间显示
+            coor_timer = setInterval(function(){
+                curr++;
+                // 取余 可得到cur 的0,1,2,3。。。。
+                curr = (curr + li_len) % li_len;
+                tab1(curr);
+            }, 1900);
+        }
+    });
+
+    /*coorderations start*/
+})
+
+</script>
+</head>
+
+<body>
+<!-- 上下移动html -->
+<h1>上下移动demo：jquery</h1>
+	<div id="abgneBlock">
+		<div id="player">
+			<ul class="list">
+				<li><a target="_blank" href="#"><img src="slide/slide0.jpg"></a></li>
+				<li><a target="_blank" href="#"><img src="slide/slide1.jpg"></a></li>
+				<li><a target="_blank" href="#"><img src="slide/slide0.jpg"></a></li>
+				<li><a target="_blank" href="#"><img src="slide/slide2.jpg"></a></li>
+				<li><a target="_blank" href="#"><img src="slide/slide0.jpg"></a></li>
+				<li><a target="_blank" href="#"><img src="slide/slide0.jpg"></a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- 左右移动html -->
+	<h2>左右移动地demo：jquery</h2>
+	<div class="coor">
+          <ul></ul>
+      </div>
+</body>
+</html>
